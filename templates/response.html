@@ -1,0 +1,18 @@
+<br></br>
+<h4>{{numrows}} Records Found</h4>
+<table class="table table-striped custab">
+  <thead>
+      <tr>
+         <th>sourceseal</th>
+         <th>targetseal</th>
+         <th>filename</th>
+      </tr>
+  </thead>
+  <tbody>
+{% for row in fdata %}  
+   <tr>
+    <td>{{row[1]}}</td>
+    <td>{{row[2]}}</td>
+    <td>{{row[3]}}</td>
+   </tr>
+{% endfor %}

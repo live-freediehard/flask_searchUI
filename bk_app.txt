@@ -1,0 +1,61 @@
+#app.py
+from flask import Flask, render_template, request, jsonify
+from sqlalchemy import create_engine
+from sqlalchemy import text
+import pandas as pd
+     
+app = Flask(__name__)
+     
+app.secret_key = "casdsd3298234jn"
+     
+sqliteCursor =""
+
+@app.route('/')
+def index():
+    dbval = pd.read_csv("data.csv")
+    print(dbval)
+    engine = create_engine('sqlite://?')
+    dbval.to_sql('dbdata', con=engine)
+    #createIndex = "CREATE unique INDEX index_f_name ON dbdata(filename)"
+    createIndex = "SELECT * FROM dbdata where filename like '%swp%'"
+
+    connection = engine.raw_connection()
+    global sqliteCursor
+    sqliteCursor = connection.cursor()
+    print(sqliteCursor.execute(createIndex).fetchall())
+
+    print("index")
+    print(sqliteCursor)
+    return render_template('index.html')
+  
+@app.route("/ajaxlivesearch",methods=["POST","GET"])
+def ajaxlivesearch():
+    
+    global sqliteCursor
+    
+    cur = sqliteCursor
+    print("ajax")
+    print(sqliteCursor)
+
+
+    if request.method == 'POST':
+        search_word = request.form['query']
+        print(search_word)
+        if search_word == '':
+            query = "SELECT * from dbdata"
+            cur.execute(query)
+            employee = cur.fetchall()
+            print(employee)
+        else:
+            tr='SELECT * FROM dbdata where filename like \'%'+search_word+'%\'' 
+            print(tr)	    
+            cur.execute('select * from dbdata')
+            numrows = int(cur.rowcount)
+            employee = cur.fetchall()
+            print(numrows)
+    return jsonify({'htmlresponse': render_template('response.html', employee=employee, numrows=numrows)})
+     
+if __name__ == "__main__":
+    
+    
+    app.run(debug=True)
