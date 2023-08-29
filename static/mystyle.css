@@ -1,0 +1,69 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.search-table{
+    padding: 10%;
+    margin-top: -6%;
+}
+
+.hero {
+  width: 100%;
+  height: 20vh;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+  
+.imgcent {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 8%;
+}
+  
+#searchBox {
+  border-radius: 55px;
+  padding: 30px;
+  background: #f0f3ff;
+  display: flex;
+  align-items: center;
+  box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+    -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+}
+
+#googleIcon {
+  width: 50px;
+  cursor: pointer;
+}
+
+
+input {
+  font-size: 20px;
+  width: 0px;
+  border: 0;
+  background: transparent;
+  outline: none;
+  transition: 2s;
+}
+
+.active input {
+  width: 500px;
+  padding: 12px 20px;
+}
+
+.search-table{
+    padding: 10%;
+    margin-top: -6%;
+}
+
+.table-hover tbody tr:hover td {
+    background: #051078;
+	color: white;
+}

@@ -5,18 +5,17 @@ import pandas as pd
      
 app = Flask(__name__)
      
-app.secret_key = "j998qwm3298234jn"
+app.secret_key = "j9985648sdf468sdff54sd5f16sd1f321sdf321sd32f0s2df8qwm3298234jn"
 
 dbval = pd.read_csv("data.csv")
 print(dbval)
 db = sqlite3.connect("file::memory:?cache=shared", uri=True)
 dbval.to_sql('dbdata', con=db)
-createIndex = "CREATE unique INDEX index_f_name ON dbdata(filename)"
-sqliteCursor = db.cursor()
-print(sqliteCursor.execute(createIndex))
-
-print("index")
-print(sqliteCursor)
+#createIndex = "CREATE unique INDEX index_f_name ON dbdata(filename)"
+#sqliteCursor = db.cursor()
+#print(sqliteCursor.execute(createIndex))
+#print("index")
+#print(sqliteCursor)
 
 @app.route('/')
 def index():
@@ -42,7 +41,7 @@ def ajaxlivesearch():
             print("inside search_Blank")
             print(fdata)
         else:
-            tr='SELECT * FROM dbdata where filename like \'%'+search_word+'%\'' 
+            tr='SELECT * FROM dbdata where filename like \'%'+search_word+'%\' LIMIT 10;' 
             print(tr)	    
             cur.execute(tr)
             

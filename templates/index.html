@@ -5,74 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>myFile Search Engine</title>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script>
-$(document).ready(function(){
- 
-  function load_data(query)
-  {
-   $.ajax({
-    url:"/ajaxlivesearch",
-    method:"POST",
-    data:{query:query},
-    success:function(data)
-    {
-      $('#result').html(data);
-      $("#result").append(data.htmlresponse);
-    }
-   });
-  } 
-  $('#search_text').keyup(function(){
-    var search = $(this).val();
-    if(search != ''){
-    load_data(search);
-   }else{
-    load_data("null");
-   }
-  });
-});
-</script>
+<script src="/static/aj.js"></script>  
+<link rel="stylesheet" href="/static/mystyle.css">
+<link rel="shortcut icon" href="/static/favicon.ico">
 </head>
 <body>
-<div class="container search-table">
-<p><h2 align="center">Search using File Name</h2></p>
-            <div class="search-box">
-                <div class="row">
-                    <div class="col-md-3">
-                        <h5>Search Field Name</h5>
-                    </div>
-                    <div class="col-md-9">
-                        <input type="text" name="search_text" id="search_text" class="form-control" placeholder="Search filename">
-                    </div> 
-                </div>
-            </div>
-   <div id="result"></div>
-</div>
-<style>
-.search-table{
-    padding: 10%;
-    margin-top: -6%;
-}
-.search-box{
-    background: #c1c1c1;
-    border: 1px solid #ababab;
-    padding: 3%;
-}
-.search-box input:focus{
-    box-shadow:none;
-    border:2px solid #eeeeee;
-}
-.search-list{
-    background: #fff;
-    border: 1px solid #ababab;
-    border-top: none;
-}
-.search-list h3{
-    background: #eee;
-    padding: 3%;color:#fe6f41;
-    margin-bottom: 0%;
-}
-</style>
+
+<br></br>
+<p><img src="/static/logo.jpg" class="imgcent" alt="search files"></p>
+  
+  <div class="hero">
+      <div id="searchBox">
+        <i class="fas fa-power-off" style="font-size:24px;color:red" id="googleIcon"></i>
+        <input type="text" name="search_text" id="search_text" placeholder="Search filename or partial filename" onkeyup="myFunction()"/>
+        <i class="fa fa-hand-o-left" style="font-size:36px"></i>
+      </div>
+    
+    </div>
+<div class="container search-table" id="result"></div>
+   
+
 </body>
 </html>
